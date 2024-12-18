@@ -1,0 +1,41 @@
+<section class="align-workers">
+  <h2>Workers</h2>
+  <input id='searchBar' [(ngModel)]="filterTerm" placeholder="Search workers">
+</section>
+
+<!-- Check if there is worker data -->
+<ng-container *ngIf="!workers; else workersFound">
+  <section class="noDataMessage"><u> No workers available at this time </u></section>
+</ng-container>
+
+<ng-template #workersFound>
+  <table class="worker" *ngIf="getFilteredWorkers().length; else noWorkersFound">
+    <thead>
+      <tr>
+        <th>Worker-ID</th>
+        <th>Email</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Journey</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Loop through the workers array and display each worker as a row in the table -->
+      <tr *ngFor="let worker of getFilteredWorkers() | paginate: { itemsPerPage: 10, currentPage: pageNumber}"
+        (click)="onSelect(worker)" [class.selected]="worker === selectedWorker">
+        <td>{{worker.workerId}}</td>
+        <td>{{worker.email}}</td>
+        <td>{{worker.firstname}}</td>
+        <td>{{worker.lastname}}</td>
+        <td><button id="journeyButton">View</button></td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+<!-- Add pagination control to the page that keeps track of the amount of workers -->
+<pagination-controls (pageChange)="pageNumber = $event" *ngIf="getFilteredWorkers().length;"></pagination-controls>
+
+<!-- If there are no users that match the filter if displays the following code -->
+<ng-template #noWorkersFound>
+  <section class="noDataMessage"><u>No data matched: {{ filterTerm }}</u></section>
+</ng-template>

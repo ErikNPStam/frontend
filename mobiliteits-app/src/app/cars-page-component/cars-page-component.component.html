@@ -1,0 +1,39 @@
+<main>
+    <section class="titleDisplayAllCars">
+        <h1>Cars Show Room</h1>
+    </section>
+
+
+    <app-car-display-filter (filterApplied)="onFilterApplied($event)"></app-car-display-filter>
+
+    <section *ngIf="hasCars(); else noCarsTemplate">
+        <ul class="carDisplayPositions">
+            <li *ngFor="let car of filteredCars | paginate: { itemsPerPage: 15, currentPage: currentPage }">
+                <section>
+                    <section class="cars" (click)="selectCar(car)">
+                        <a class="linkClickOnCar" [routerLink]="['/cardetail', car.licensePlate]">
+                            <img [src]="car.carImage || defaultImageUrl" (error)="car.carImage = null"
+                                alt="Standaard afbeelding" class="imgClass">
+                            <h2 class="titleCar">{{car.brand}} {{car.model}} <p class="carTransmission">
+                                    {{car.transmission}}</p>
+                            </h2>
+                            <h3 class="infoCar"> Mileage: {{car.mileage}}KM | Build Year: {{car.buildYear}} | fuel
+                                type:
+                                {{car.fuelType}} </h3>
+                        </a>
+                    </section>
+                </section>
+            </li>
+        </ul>
+    </section>
+
+    <ng-template #noCarsTemplate>
+        <section>
+            <p class="editErrorMessage">{{ message }}</p>
+        </section>
+    </ng-template>
+
+    <section class="editPagination">
+        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+    </section>
+</main>

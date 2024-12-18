@@ -1,0 +1,57 @@
+# This file is a template, and might need editing before it works on your project.
+# This is a sample GitLab CI/CD configuration file that should run without any modifications.
+# It demonstrates a basic 3 stage CI/CD pipeline. Instead of real tests or scripts,
+# it uses echo commands to simulate the pipeline execution.
+#
+# A pipeline is composed of independent jobs that run scripts, grouped into stages.
+# Stages run in sequential order, but jobs within stages run in parallel.
+#
+# For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
+#
+# You can copy and paste this template into a new `.gitlab-ci.yml` file.
+# You should not add this template to an existing `.gitlab-ci.yml` file by using the `include:` keyword.
+#
+# To contribute improvements to CI/CD templates, please follow the Development guide at:
+# https://docs.gitlab.com/ee/development/cicd/templates.html
+# This specific template is located at:
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
+
+stages: # List of stages for jobs, and their order of execution
+  - build
+  - test
+
+build-job:       # This job runs in the build stage, which runs first.
+  image: node:latest
+  stage: build
+  script:
+    # Installeer dependencies
+    - cd mobiliteits-app
+    - npm update
+    - npm ci
+  # Alleen uitvoeren op branches, niet op tags of andere events
+  only:
+    - branches
+  tags:
+    - hva
+
+unit-test-job: # This job runs in the test stage.
+  image: node:latest
+  stage: test # It only starts when the job in the build stage completes successfully.
+  before_script:
+    # Installeer dependencies
+    - apt-get update
+    - apt-get install -y libnss3 libdbus-1-3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libpango-1.0-0 libcairo2 libasound2 libatspi2.0-0
+  script:
+     # Voer tests uit
+    - cd mobiliteits-app
+    - npm ci
+    - npm install puppeteer
+    - export CHROME_BIN=$(node -e "const puppeteer = require('puppeteer'); console.log(puppeteer.executablePath());")
+    - npm run test -- --no-watch --browsers=ChromeHeadlessCI
+  only:
+    - branches
+  tags:
+    - hva
+ 
+
+

@@ -1,0 +1,28 @@
+<h2 class="loginText">Login</h2>
+
+<div *ngIf="succesRegister" class="succesRegister">
+    <p>Account created successfully!</p>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <section id="FormGroup">
+        <label>Username</label>
+        <br>
+        <input type="text" formControlName="username">
+        <br>
+        <section *ngIf="submitted && data.username.errors" class="errorMessage">
+            <section *ngIf="data.username.errors.required">Username is required</section>
+        </section>
+        <br>
+
+        <label>Password</label>
+        <br>
+        <input type="password" formControlName="password">
+        <br>
+        <section *ngIf="submitted && data.password.errors" class="errorMessage">
+            <section *ngIf="data.password.errors.required">Password is required</section>
+            <section *ngIf="data.password.errors.minlength">Password doesn't match</section>
+        </section>
+        <br>
+        <button class="confirmButton" type="submit">Confirm</button>
+    </section>
+</form>

@@ -1,0 +1,101 @@
+.titleDisplayAllCars{
+background-color: #d2cfcf;
+font-size: 25px;
+}
+
+
+
+.editErrorMessage{
+    color: lightgray;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 20%;
+    text-decoration: underline;
+}
+
+h1{
+    text-align: center;
+    color: rgb(85, 87, 88);
+}
+
+.carTransmission{
+
+    font-size: 15px;
+}
+
+.carDisplayPositions{
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    margin-right: 5%;
+    list-style: none;
+}
+
+.cars{
+    width: 80%;
+    margin: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 5);
+    text-align: center;
+    padding: 20px;
+   cursor: pointer;
+   margin-bottom: 2px;
+}
+
+.cars:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.linkClickOnCar{
+    text-decoration: none;
+    color:black;
+}
+
+.linkClickOnCar:hover{
+    color: #0c2bdb;
+    text-decoration: underline;
+}
+
+.imgClass{
+  width: 100%; 
+  max-width: 300px; 
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px; 
+}
+
+
+.titleCar{
+    font-size: 30px;
+}
+
+.infoCar{
+    font-size: 15px;
+}
+
+.editPagination{
+  margin-top: 50px;
+  margin-left: 40%;
+  margin-bottom: 2%;
+}
+
+  .dropdownSection {
+    display: flex;
+    margin-left: 20%;
+    margin-bottom: 20px;
+  }
+  
+  .dropdown {
+    font-size: 16px;
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    background-color: #ffffff5a;
+    cursor: pointer;
+  }
+  
+  .dropdown:focus {
+    border-color: #000000;
+  }
+  

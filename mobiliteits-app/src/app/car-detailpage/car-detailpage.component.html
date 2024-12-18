@@ -1,0 +1,98 @@
+<main>
+  <article class="slider_container">
+    <article class="slider_container_inside">
+      <swiper style="--swiper-navigation-color: #fff;--swiper-pagination-color: #fff"
+        [thumbs]="{ swiper: thumbsSwiper }" [config]="config_swiper_1" class="mySwiper2">
+        <ng-template swiperSlide *ngFor="let image of images"><img [src]="modelCar.carImage" /></ng-template>
+      </swiper>
+      <swiper (swiper)="thumbsSwiper = $event" [config]="config_swiper_2" class="mySwiper">
+        <ng-template swiperSlide *ngFor="let image of images"><img [src]="modelCar.carImage" /></ng-template>
+      </swiper>
+    </article>
+    <article class="slider_container_rent_car">
+      <form id="rent_car">
+        <section class="rent_car_inside">
+          <section class="rent_car_content">
+            <label for="from">From</label>
+            <input type="date" name="from" id="rent_car_from">
+          </section>
+          <section class="rent_car_content">
+            <label for="till">Till</label>
+            <input type="date" name="till" id="rent_car_till">
+          </section>
+        </section>
+        <input type="submit" value="huur auto" class="btn_car">
+      </form>
+    </article>
+    <article class="slider_container_other_cars">
+      <!-- Additional content can go here -->
+    </article>
+  </article>
+  <article class="information_container">
+    <section>
+      <h2>{{ modelCar.brand }}</h2>
+      <p>{{ modelCar.model }}</p>
+    </section>
+    <form class="calculator" (ngSubmit)="onSubmit()">
+      <section class="calculator-name">Rekenvoorbeeld</section>
+      <section class="distance">
+        <section class="distance-inner">
+          <section class="distance-inner-input">
+            <section class="distance-inner-input-text">Verwachte kilometers per maand </section>
+            <input class="distance-inner-input-btn" step="0.01" type="number" name="km" placeholder="5000..." maxlength="6" [(ngModel)]="formData.km">
+          </section>
+          <section class="distance-inner-flex">
+            <section class="distance-inner-output-total-cost-info">Totale uitstoot per maand</section>
+            <section class="distance-inner-output-total-cost-text">{{ emissions && emissions + " gram CO2" }}</section>
+          </section>
+        </section>
+      </section>
+      <input type="submit" value="bereken" class="btn_car">
+    </form>
+    <table class="table-detail">
+      <tr>
+        <td class="cell">
+          <article (click)="toggleExpanded()" class="table-detail-around">
+            <article class="table-head" *ngIf="!isExpanded">Details <fa-icon [icon]="faChevronDown"></fa-icon></article>
+            <article class="table-head" *ngIf="isExpanded">Details <fa-icon [icon]="faChevronUp"></fa-icon></article>
+            <article [@expandCollapse]="isExpanded ? 'expanded' : 'collapsed'">
+              <article *ngIf="isExpanded" class="expanded-panel">
+                <article class="table-container">
+                  <article class="table">
+                    <p class="special-p">Algemeen</p>
+                    <article class="header-row">
+                      <section class="row-info">
+                        <p>Merk & modelCar</p>
+                        <p class="info-text">{{ modelCar.brand }} {{ modelCar.model }}</p>
+                      </section>
+                      <section class="row-info">
+                        <p>kenteken plaat</p>
+                        <p class="info-text">{{ modelCar.licensePlate }}</p>
+                      </section>
+                      <section class="row-info">
+                        <p>Brandstof</p>
+                        <p class="info-text">{{ modelCar.fuelType }}</p>
+                      </section>
+                      <section class="row-info">
+                        <p>Transmissie auto</p>
+                        <p class="info-text">{{ modelCar.transmission }}</p>
+                      </section>
+                      <section class="row-info">
+                        <p>Kilometer stand</p>
+                        <p class="info-text">{{ modelCar.mileage }}</p>
+                      </section>
+                      <section class="row-info">
+                        <p>Bouwjaar</p>
+                        <p class="info-text">{{ modelCar.buildYear }}</p>
+                      </section>
+                    </article>
+                  </article>
+                </article>
+              </article>
+            </article>
+          </article>
+        </td>
+      </tr>
+    </table>
+  </article>
+</main>

@@ -1,0 +1,10 @@
+body {
+    font-family: arial, sans-serif;
+    margin: 0;
+}
+
+.welcomeMessage {
+    color: lightgrey;
+    font-size: 2rem;
+    text-align: center;
+}

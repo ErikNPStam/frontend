@@ -1,0 +1,52 @@
+<h2>Journeys</h2>
+<nav>
+    <a routerLink="/admin">dashboard</a>
+</nav>
+
+<section id="errorMessage" *ngIf="error">
+    <u>{{ error.error }}</u>
+</section>
+
+<section id="errorMessage" *ngIf="!error && fetched && !journeys.length">
+    <u>You have no Journeys.</u>
+</section>
+
+<section id="errorMessage" *ngIf="!error && !fetched">
+    <u>Loading...</u>
+</section>
+
+<!-- Journeys tabel -->
+<ng-container *ngIf="fetched && !error">
+    <table *ngIf="journeys && journeys.length > 0">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Transport</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Distance</th>
+                <th>Price</th>
+                <th>Emissions</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let journey of journeys">
+                <td>{{ journey.email }}</td>
+                <td>{{ journey.type }}</td>
+                <td>{{ journey.date }}</td>
+                <td>{{ journey.transportType }}</td>
+                <td>{{ journey.addressFrom }}</td>
+                <td>{{ journey.addressTo }}</td>
+                <td>{{ journey.kilometers }}</td>
+                <td>{{ journey.price }}</td>
+                <td>{{ journey.emissions }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <section *ngIf="!journeys || journeys.length === 0">
+        <u>No journeys available at this time.</u>
+    </section>
+</ng-container>

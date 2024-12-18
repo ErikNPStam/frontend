@@ -1,0 +1,72 @@
+
+.filter {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.selectBrand, .selectModel, .selectFuel{
+  padding: 10px 15px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  width: 30%;
+}
+
+.dropdownAvailable{
+  border-radius: 4px;
+  background-color: white;
+  border: 2px solid #ddd;
+
+
+
+}
+
+.selectBrand:focus, .selectModel:focus, .selectFuel:focus{
+  border-color: #0056b3;
+  outline: none;
+}
+
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:focus {
+  outline: none;
+}
+
+.applyFilter {
+  background-color: #28a745; 
+}
+
+.resetAll {
+  background-color: #dc3545; 
+}
+
+.resetSelection{
+  background-color: #dc3545; 
+}

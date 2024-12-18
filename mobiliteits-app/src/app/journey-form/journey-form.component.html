@@ -1,0 +1,99 @@
+<section id="title">
+    <h2>Journey Form</h2>
+</section>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <section class="container">
+        <section class="inputContainer">
+
+            <section *ngIf="form.get('type').invalid && submitted" class="error-message">
+                Please select one.
+            </section>
+
+            <section class="inputField">
+                <input type="radio" name="type" value="Commuting" formControlName="type">
+                <label for="Commuting">Commuting</label>
+
+                <input type="radio" name="type" value="Business" formControlName="type">
+                <label for="Business">Business</label>
+            </section>
+
+            <section *ngIf="form.get('date').invalid && submitted" class="error-message">
+                <section *ngIf="form.get('date').errors.future">
+                    Select a date that is not in the future.
+                </section>
+                <section *ngIf="form.get('date').errors.required">
+                    Please select a date.
+                </section>
+            </section>
+
+            <section class="inputField">
+                <label for="date">Date</label>
+                <input type="date" name="date" value="" formControlName="date">
+            </section>
+
+            <section *ngIf="form.get('transport').invalid && submitted" class="error-message">
+                Please select a transport.
+            </section>
+
+            <section class="inputField">
+                <label for="transport">Transport</label>
+                <select name="transport" formControlName="transport">
+                    <option value="Car">Car</option>
+                    <option value="Train">Train</option>
+                    <option value="Bus">Bus</option>
+                    <option value="Metro">Metro</option>
+                    <option value="Boat">Boat</option>
+                    <option value="Plane">Plane</option>
+                    <option value="Cycling">Cycling</option>
+                    <option value="Walking">Walking</option>
+                </select>
+            </section>
+
+            <section *ngIf="form.get('fuelType').invalid && submitted" class="error-message">
+                Please select a fuel type.
+            </section>
+
+            <section class="inputField" *ngIf="form.get('transport').value === 'Car'">
+                <label for=" fuelType">Fuel Type</label>
+                <select name="fuelType" formControlName="fuelType">
+                    <option value="Petrol">Petrol</option>
+                    <option value="Diesel">Diesel</option>
+                    <option value="Electrric">Electric</option>
+                </select>
+            </section>
+
+            <section class="inputField">
+                <label for="addressFrom">Address From</label>
+                <input type="text" name="addressFrom" placeholder="..." formControlName="addressFrom">
+            </section>
+
+            <section class="inputField">
+                <label for="addressTo">Address To</label>
+                <input type="text" name="addressTo" placeholder="..." formControlName="addressTo">
+            </section>
+
+            <section *ngIf="form.get('distance').invalid && submitted" class="error-message">
+                Distance should be bigger than 0.
+            </section>
+
+            <section class="inputField">
+                <label for="distance">Distance (km)</label>
+                <input type="number" name="distance" value="0" min="0" step="0.01" formControlName="distance">
+            </section>
+
+            <section *ngIf="form.get('price').invalid && submitted" class="error-message">
+                Price should be bigger than or equal to 0.
+            </section>
+
+            <section class="inputField">
+                <label for="price">Price (€)</label>
+                <input type="number" name="price" value="0" min="0" step="0.01" formControlName="price">
+            </section>
+        </section>
+    </section>
+
+    <section class="alignCenter">
+        <input type="submit" class="button alignCenter">
+    </section>
+</form>

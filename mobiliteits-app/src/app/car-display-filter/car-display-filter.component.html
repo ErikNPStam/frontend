@@ -1,0 +1,28 @@
+<section class="filter">
+
+    <select class="dropdownAvailable" (change)="onDropdownChange($event)">
+        <option value="all">All Cars</option>
+        <option value="available">Available Cars today</option>
+    </select>
+
+    <select class="selectBrand" [(ngModel)]="selectedBrand" (change)="onBrandChange()">
+        <option value="">Select Brand</option>
+        <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+    </select>
+
+    <select class="selectModel" [(ngModel)]="selectedModel" (change)="onModelChange()">
+        <option value="">Select Model</option>
+        <option *ngFor="let model of models" [value]="model">{{ model }}</option>
+    </select>
+
+    <select class="selectFuel" [(ngModel)]="selectedFuelType" (change)="onFuelTypeChange()">
+        <option value="">Select Fuel Type</option>
+        <option *ngFor="let fuelType of fuelTypes" [value]="fuelType">{{ fuelType }}</option>
+    </select>
+
+</section>
+
+<section class="buttons">
+    <button class="applyFilter" (click)="applyFilter()">Search</button>
+    <button class="resetAll" (click)="resetFilters()">reset search</button>
+</section>

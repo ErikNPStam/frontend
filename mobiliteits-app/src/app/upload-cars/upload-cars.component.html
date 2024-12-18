@@ -1,0 +1,28 @@
+<section *ngIf="authorized; else notAuthorized">
+    <h1 class="title">Upload New Cars</h1>
+    <form (ngSubmit)="onSubmit(carForm, fileInput)" #carForm="ngForm">
+        <p>License Plate:</p>
+        <input type="text" name="licensePlate" ngModel>
+        <p>Brand:</p>
+        <input type="text" name="brand" ngModel>
+        <p>Model:</p>
+        <input type="text" name="model" ngModel>
+        <p>Transmission:</p>
+        <input type="text" name="transmission" ngModel>
+        <p>Build Year:</p>
+        <input type="text" name="buildYear" ngModel>
+        <p>Fuel type:</p>
+        <input type="text" name="fuelType" ngModel>
+        <p>Mileage:</p>
+        <input type="text" name="mileage" ngModel>
+        <p>Image:</p>
+        <input type="file" #fileInput>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+</section>
+<ng-template #notAuthorized>
+    <div class="error">{{ errorMessage }}</div>
+</ng-template>

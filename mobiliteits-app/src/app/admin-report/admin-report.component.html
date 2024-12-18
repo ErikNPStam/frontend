@@ -1,0 +1,73 @@
+<!--
+    This HTML template is used for the admin report component.
+    It displays a table of reports with fuel type, total kilometers, and emission values.
+    If there is no data available, a message is shown.
+    If there is an error, an error message is displayed.
+    The table headers are sortable, allowing the user to sort the reports based on fuel type, total kilometers, or emission.
+    The reports are displayed in a table using ngFor directive.
+-->
+<ng-container *ngIf="!adminReport; else dataFound">
+    <section class="noDataMessage"><u> No data available at this time </u></section>
+</ng-container>
+
+<ng-template #dataFound>
+    <ng-container *ngIf="!errorMessage; else errorFound">
+        <section class="monthYearSelect"></section>
+        <label for="monthSelect" class="monthSelect">Select Month: </label>
+        <select id="monthSelect" [(ngModel)]="selectedMonth" (ngModelChange)="onMonthChange($event)">
+            <option *ngFor="let month of getMonths()" [value]="month">{{ month }}</option>
+        </select>
+
+        <label for="yearSelect" class="yearSelect"> Select Year: </label>
+        <select id="yearSelect" [(ngModel)]="selectedYear" (ngModelChange)="onYearChange($event)">
+            <option *ngFor="let year of getYears()" [value]="year">{{ year }}</option>
+        </select>
+
+        <ng-container *ngIf="adminReport.length > 0; else noDataForSelectedMonth">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="sortable" (click)="sortReports('fuelType'); toggleSortOrder()">
+                            Fuel Type
+                            <span *ngIf="sortField === 'fuelType' && sortOrder === 'asc'">↑</span>
+                            <span *ngIf="sortField === 'fuelType' && sortOrder === 'desc'">↓</span>
+                        </th>
+                        <th class="sortable" (click)="sortReports('totalKilometers'); toggleSortOrder()">
+                            Total Kilometers
+                            <span *ngIf="sortField === 'totalKilometers' && sortOrder === 'asc'">↑</span>
+                            <span *ngIf="sortField === 'totalKilometers' && sortOrder === 'desc'">↓</span>
+                        </th>
+                        <th class="sortable" (click)="sortReports('emission'); toggleSortOrder()">
+                            Emission
+                            <span *ngIf="sortField === 'emission' && sortOrder === 'asc'">↑</span>
+                            <span *ngIf="sortField === 'emission' && sortOrder === 'desc'">↓</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of adminReport">
+                        <td>{{ item.fuelType }}</td>
+                        <td>{{ item.totalKilometers }}</td>
+                        <td>{{ item.emission }}g</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="generateGraph" (click)="toggleChart()">
+                {{ isChartVisible ? 'Collapse Graph' : 'Generate Graph'}}
+            </button>
+            <canvas id="pieChart"></canvas>
+        </ng-container>
+    </ng-container>
+</ng-template>
+
+<ng-template #errorFound>
+    <section class="errorMessage">
+        <p>{{ errorMessage }}</p>
+    </section>
+</ng-template>
+
+<ng-template #noDataForSelectedMonth>
+    <section class="noDataMessage">
+        <p>No data available for {{ selectedMonth }} {{ selectedYear }}</p>
+    </section>
+</ng-template>

@@ -1,0 +1,28 @@
+<nav class="nav-infront">
+  <section class="navbar">
+    <section class="container nav-container">
+      <input class="checkbox" type="checkbox" name="" id="" />
+      <section class="hamburger-lines">
+        <span class="line line1"></span>
+        <span class="line line2"></span>
+        <span class="line line3"></span>
+      </section>
+      <section class="logo">
+      </section>
+      <section class="menu-items">
+        <li><a href="/">Home</a></li>
+        <li><a href="/displayCars">All cars</a></li>
+        <li><a href="/cardetail">Car detail</a></li>
+        <li><a href="/register">Register</a></li>
+        <li><a href="/journeys">Journey</a></li>
+        <li><a href="/journeys/all">JourneyAdmin</a></li>
+        <li><a href="/workers">Worker</a></li>
+        <li><a href="/admin/cars/upload">Upload cars Admin</a></li>
+        <li><a href="/admin-panel">admin-panel</a></li>
+        <li><a href="/admin-panel">Admin panel</a></li>
+        <li *ngIf="!isLoggedIn"><a href="/login">Login</a></li>
+        <li *ngIf="isLoggedIn"><a (click)="logout()">Logout</a></li>
+      </section>
+    </section>
+  </section>
+</nav>

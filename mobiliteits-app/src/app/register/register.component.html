@@ -1,0 +1,59 @@
+<h2 class="signUpText">Sign up</h2>
+<br><br><br>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <section id="form-group">
+        <label>First name</label>
+        <br>
+        <input type="text" formControlName="firstName">
+        <br>
+        <section *ngIf="submitted && data.firstName.errors" class="errorMessage">
+            <section *ngIf="data.firstName.errors.required">First name is required</section>
+        </section>
+        <br>
+
+        <label>Middle name (Optional)</label>
+        <br>
+        <input type="text" formControlName="middleName">
+        <br><br>
+
+        <label>Last name</label>
+        <br>
+        <input type="text" formControlName="lastName">
+        <br>
+        <section *ngIf="submitted && data.lastName.errors" class="errorMessage">
+            <section *ngIf="data.lastName.errors.required">Last name is required</section>
+        </section>
+        <br>
+
+        <label>E-Mail</label>
+        <br>
+        <input type="text" formControlName="email">
+        <br>
+        <section *ngIf="submitted && data.email.errors" class="errorMessage">
+            <section *ngIf="data.email.errors.required">Email is required</section>
+            <section *ngIf="data.email.errors.email">Invalid email format</section>
+        </section>
+        <br>
+
+        <label>Password</label>
+        <br>
+        <input type="password" formControlName="password">
+        <br>
+        <section *ngIf="submitted && data.password.errors" class="errorMessage">
+            <section *ngIf="data.password.errors.required">Password is required</section>
+            <section *ngIf="data.password.errors.minlength">Password must be at least 6 characters long</section>
+        </section>
+        <br>
+
+        <label>Confirm Password</label>
+        <br>
+        <input type="password" formControlName="confirmPassword">
+        <br>
+        <section *ngIf="submitted && data.confirmPassword.errors" class="errorMessage">
+            <section *ngIf="data.confirmPassword.errors.required">Password doesn't match</section>
+        </section>
+        <br><br>
+
+        <button class="confirmButton" type="submit">Confirm</button>
+    </section>
+</form>

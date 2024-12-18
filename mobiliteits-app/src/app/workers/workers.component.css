@@ -1,0 +1,68 @@
+#journeyButton {
+  width: auto;
+  height: auto;
+  background-color: #eee;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: rgb(12, 12, 12);
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  display: center;
+  text-align: center;
+}
+#searchBar {
+  width: 10%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  text-align: left;
+  float: right;
+}
+.align-workers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0rem 5.6rem;
+}
+
+.noDataMessage {
+  color: lightgrey;
+  font-size: 2rem;
+  text-align: center;
+}
+
+button:hover {
+  background-color: black;
+  color: white;
+}
+button:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: auto;
+}
+
+table {
+  width: 90%; 
+  margin: 2% auto; 
+  border-collapse: collapse;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  border: 1px solid #ddd; 
+}
+
+th, td {
+  padding: 1rem;
+  text-align: center;
+  border: 1px solid #ddd; 
+}
+
+th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}

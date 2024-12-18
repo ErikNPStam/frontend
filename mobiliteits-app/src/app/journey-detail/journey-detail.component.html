@@ -1,0 +1,8 @@
+<div *ngIf="journey">
+    <h2>{{journey.name | uppercase}} Details</h2>
+    <div>id: {{journey.id}}</div>
+    <div>
+        <label for="journey-name">Journey-name: </label>
+        <input id="journey-name" [(ngModel)]="journey.name" placeholder="name">
+    </div>
+</div>

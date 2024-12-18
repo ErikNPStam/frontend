@@ -1,0 +1,35 @@
+.navbar {
+    display: flex;
+    flex-direction: right;
+    width: auto; /* Adjust the width as needed */
+    background-color: #f0f0f0; /* Set your desired background color */
+}
+
+.navbar a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333; /* Set your desired text color */
+    font-weight: bold;
+    font-size: 16px; /* Set your desired font size */
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+    width: auto;
+    height: auto;
+    background-color: #eee;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: rgb(12, 12, 12);
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    display: center;
+    text-align: center;
+    margin: 0 5%;
+    border-color: bisque;
+}
+
+.navbar a:hover {
+    background-color: #ddd; /* Set your desired hover background color */
+    font-size: 1.25rem;
+  
+}

@@ -1,0 +1,55 @@
+<section id="title" *ngIf="journeys.length">
+    <h2>Your Journeys</h2>
+</section>
+
+<table *ngIf="journeys.length">
+    <tr>
+        <th>Type</th>
+        <th>Date</th>
+        <th>Transport</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Distance</th>
+        <th>Price</th>
+        <th>Emissions</th>
+        <th>Delete</th>
+    </tr>
+    <tr *ngFor="let journey of journeys | paginate: { itemsPerPage: 8, currentPage: pageNumber}">
+        <td>{{journey.type}}</td>
+        <td>
+            {{journey.date.substring(0, 10)}}
+        </td>
+        <td>{{journey.transportType}}</td>
+        <td>{{journey.addressFrom}}</td>
+        <td>{{journey.addressTo}}</td>
+        <td>{{journey.kilometers}} km</td>
+        <td>€{{journey.price}}</td>
+        <td>{{journey.emissions}} g</td>
+        <td class="deleteTableButton">
+            <button class="deleteTableButton" (click)="deleteJourney(journey)">Delete</button>
+        </td>
+    </tr>
+</table>
+
+<section id="errorMessage" *ngIf="error">
+    <u>{{error.message}}</u>
+</section>
+
+<section id="errorMessage" *ngIf="!error && !journeys.length && fetched">
+    <u>You have no Journeys.</u>
+</section>
+
+<section id="errorMessage" *ngIf="!error && !journeys.length && !fetched">
+    <u>Loading...</u>
+</section>
+
+
+
+<!-- Add pagination control to the page that keeps track of the amount of journeys -->
+<pagination-controls (pageChange)="pageNumber = $event" *ngIf="journeys.length > 8;"></pagination-controls>
+
+<section class="button alignCenter" *ngIf="!error && fetched">
+    <a href="/journey/form">
+        <button>Create a Journey</button>
+    </a>
+</section>
